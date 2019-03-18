@@ -12,17 +12,17 @@ int arr[6][6];
 
 int main() {
     arr[1][1] = 1;
-    for (int i = 1; i <= 5; i++) {
+    for (int i = 1; i <= 4; i++) {
         for (int j = 1; j <= 5; j++) {
             arr[i][j] += arr[i - 1][j] + arr[i][j - 1];
         }
     }
-    for (int i = 1; i <= 5; i++) {
+    for (int i = 1; i <= 4; i++) {
         for (int j = 1; j <= 5; j++) {
             cout << arr[i][j] << " ";
         }
         cout << endl;
     }
-    cout << arr[5][5] << endl;
+    cout << arr[4][5] << endl;
     return 0;
 }
