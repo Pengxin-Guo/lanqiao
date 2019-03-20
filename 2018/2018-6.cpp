@@ -20,9 +20,10 @@ int main() {
         memset(str2, 0, sizeof(str2));
         scanf("%[^\n]s", str1);
         getchar();
-        scanf("%[\n]s", str2);
+        scanf("%[^\n]s", str2);
         getchar();
-        cout << str2 << endl;
+        //cout << "str1 = " << str1 << endl;
+        //cout << "str2 = " << str2 << endl;
         h1 = (str1[0] - '0') * 10 + str1[1] - '0';
         m1 = (str1[3] - '0') * 10 + str1[4] - '0';
         s1 = (str1[6] - '0') * 10 + str1[7] - '0';
@@ -54,7 +55,6 @@ int main() {
         }
         mm2 = m2 - m1;
         ss2 = s2 - s1;
-        cout << hh1 << " " << hh2 << endl;
         printf("%02d:%02d:%02d\n", (hh1 + hh2) / 2, (mm1 + mm2) / 2, (ss1 + ss2) / 2);
     }
     return 0;
