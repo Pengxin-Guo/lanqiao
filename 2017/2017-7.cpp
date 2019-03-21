@@ -14,8 +14,8 @@ char s[105];
 int p = 0;
 
 int dfs() {
-    int ans = 0;      // 代表当前连续x的字符长度
-    int result = 0;   // 代表当前答案
+    int ans = 0;       // 代表当前连续x的字符长度
+    int result = 0;    // 代表当前答案
     while (p < len) {
         if (s[p] == '(') {
             p++;
