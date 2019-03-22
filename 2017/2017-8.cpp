@@ -44,9 +44,13 @@ int main() {
         ans = max(ans, arr[i][0]);
         ans = max(ans, arr[i][1]);
     }
-    while (!is_valid(ans)) {
-        ans -= 1;
+    int head = 0, tail = ans, mid;
+    // 11110000求最后一个1的位置
+    while (head < tail) {
+        mid = ((head + tail) >> 1) + 1;
+        if (!is_valid(mid)) tail = mid - 1;
+        else head = mid;
     }
-    cout << ans << endl;
+    cout << tail << endl;
     return 0;
 }
