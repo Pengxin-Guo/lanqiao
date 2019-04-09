@@ -8,11 +8,12 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-#define MAX_N 100
+#define MAX_N 10000
+#define MAX_M 100000
 
 struct Edge {
     int to, next;
-} g[MAX_N + 5];
+} g[MAX_M + 5];
 int head[MAX_N + 5], cnt = 0;
 int n, m;
 int degree[MAX_N + 5];
