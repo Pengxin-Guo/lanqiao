@@ -26,6 +26,7 @@ void build(int id, int l, int r) {
     build(id << 1, l, mid);
     build(id << 1 | 1, mid + 1, r);
     pushup(id);
+    return ;
 }
 
 // 更新过程只更新了minv数组, 不再管a数组了
@@ -41,6 +42,7 @@ void update(int id, int l, int r, int x, int v) {
         update(id << 1 | 1, mid + 1, r, x, v);
     }
     pushup(id);
+    return ;
 }
 
 int query(int id, int l, int r, int x, int y) {
@@ -50,7 +52,7 @@ int query(int id, int l, int r, int x, int y) {
     int mid = (l + r) >> 1;
     int ans = INF;
     if (x <= mid) {
-        ans = min(ans, query(id << 1, 1, mid, x, y));
+        ans = min(ans, query(id << 1, l, mid, x, y));
     }
     if (y > mid) {
         ans = min(ans, query(id << 1 | 1, mid + 1, r, x, y));
