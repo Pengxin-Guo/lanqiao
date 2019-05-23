@@ -14,7 +14,6 @@ using namespace std;
 typedef long long LL;
 
 struct Node {
-    int id;       // 小动物的编号
     int pre;      // 左手拉的小动物
     int next;     // 右手拉的小动物
     int h;        // 欢乐值
@@ -23,11 +22,9 @@ struct Node {
 } node[MAX_N + 5];
 
 int n, m;
-int vis[MAX_N + 5];
 
 void init() {
     for (int i = 1; i <= n; i++) {
-        node[i].id = i;
         node[i].t = n;
         node[i].next = i + 1;
         node[i].pre = i - 1;
@@ -39,7 +36,15 @@ void init() {
 
 // 更新圈的大小
 void update() {
-
+    for (int i = 1; i <= n; i++) {
+        int cnt = 1, st = node[i].next;
+        while (st != i) {
+            cnt++;
+            st = node[st].next;
+        }
+        node[i].t = cnt;
+    }
+    return ;
 }
 
 void change(int p, int q) {
@@ -55,8 +60,8 @@ void change(int p, int q) {
 LL getSum(int x) {
     int st = node[x].next, cnt = 1;
     LL sum = 0;
-    while (node[st].id != x) {
-        sum = (sum + (((node[x].t - cnt) % MOD) * (node[st].h % MOD) * (node[st].f % MOD)) % MOD) % MOD;
+    while (st != x) {
+        sum = (sum + ((((node[st].t - cnt) * node[x].h) % MOD) * node[st].f) % MOD) % MOD;
         st = node[st].next;
         cnt++;
     }
@@ -75,7 +80,7 @@ void func() {
 void output() {
     cout << "队形" << endl;
     for (int i = 1; i <= n; i++) {
-        cout << node[i].pre << " " << node[i].id << " " << node[i].next << endl;
+        printf("id = %d, [%d, %d], h = %d, f = %d\n", i, node[i].pre, node[i].next, node[i].h, node[i].f);
     }
     return ;
 }
@@ -93,12 +98,15 @@ int main() {
         cin >> k >> p >> q;
         if (k == 1) {
             change(p, q);
+            //output();
             func();
         } else if (k == 2) {
             node[p].h = q;
+            //output();
             func();
         } else if (k == 3) {
             node[p].f = q;
+            //output();
             func();
         }
     }
